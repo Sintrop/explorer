@@ -15,6 +15,12 @@ import { StatusTx } from "@/components/StatusTx"
 import { Loading, NotFoundMessage, RpcErrorMessage } from "@/components/QueryState"
 import { Card, CardBody, CardHeader } from "@/components/ui/Card"
 import { RevertReason } from "./RevertReason"
+import { TokenTransfers } from "./TokenTransfers"
+import { InputData } from "./InputData"
+import { EventLogs } from "./EventLogs"
+import { InternalCalls } from "./InternalCalls"
+import { decodeCall, extractTransfers } from "@/lib/decode"
+import { MethodBadge } from "@/components/ArgValue"
 
 export function TransactionDetails({ hash }: { hash: string }): JSX.Element {
   const t = useTranslations("tx")
@@ -76,6 +82,8 @@ export function TransactionDetails({ hash }: { hash: string }): JSX.Element {
 
   const gasPrice = hexToBigInt(receipt?.effectiveGasPrice ?? tx.gasPrice)
   const fee = receipt ? hexToBigInt(receipt.gasUsed) * gasPrice : null
+  const decoded = decodeCall(tx.to, tx.input)
+  const transfers = receipt ? extractTransfers(receipt.logs) : []
 
   return (
     <div className="flex flex-col gap-6">
@@ -127,9 +135,21 @@ export function TransactionDetails({ hash }: { hash: string }): JSX.Element {
               )
             )}
 
+            {decoded && (
+              <DataItem label={t("method")}>
+                <MethodBadge name={decoded.name} />
+              </DataItem>
+            )}
+
             <DataItem label={t("value")}>
               <Amount value={hexToBigInt(tx.value)} maxFractionDigits={18} />
             </DataItem>
+
+            {transfers.length > 0 && (
+              <DataItem label={t("tokenTransfers", { count: transfers.length })}>
+                <TokenTransfers transfers={transfers} />
+              </DataItem>
+            )}
 
             {fee !== null && (
               <DataItem label={t("fee")}>
@@ -157,13 +177,29 @@ export function TransactionDetails({ hash }: { hash: string }): JSX.Element {
             {tx.transactionIndex && <DataItem label={t("position")}>{hexToNumber(tx.transactionIndex)}</DataItem>}
 
             <DataItem label={t("input")}>
-              <pre className="max-h-48 overflow-auto rounded-lg bg-muted p-3 font-mono text-xs break-all whitespace-pre-wrap">
-                {tx.input}
-              </pre>
+              <InputData input={tx.input} decoded={decoded} />
             </DataItem>
           </DataList>
         </CardBody>
       </Card>
+
+      {receipt && (
+        <Card>
+          <CardHeader title={t("events")} action={receipt.logs.length} />
+          <CardBody>
+            <EventLogs logs={receipt.logs} />
+          </CardBody>
+        </Card>
+      )}
+
+      {isMined && (
+        <Card>
+          <CardHeader title={t("internalCalls")} />
+          <CardBody>
+            <InternalCalls hash={hash} />
+          </CardBody>
+        </Card>
+      )}
     </div>
   )
 }

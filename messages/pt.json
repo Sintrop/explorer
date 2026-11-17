@@ -46,7 +46,10 @@
     "colHash": "Hash",
     "colFrom": "De",
     "colTo": "Para",
-    "colValue": "Valor"
+    "colValue": "Valor",
+    "protocolActivity": "Atividade recente do protocolo",
+    "viewContracts": "Ver contratos",
+    "noProtocolActivity": "Nenhum evento dos contratos do protocolo nos últimos ~70 dias."
   },
   "block": {
     "metaTitle": "Bloco #{block}",
@@ -101,7 +104,16 @@
     "noReason": "O contrato não informou motivo.",
     "traceUnavailable": "Não foi possível obter o motivo da falha.",
     "overview": "Visão geral",
-    "details": "Detalhes de gas e execução"
+    "details": "Detalhes de gas e execução",
+    "method": "Método",
+    "tokenTransfers": "{count, plural, one {Transferência de token} other {Transferências de tokens (#)}}",
+    "rawInput": "Ver dados brutos",
+    "events": "Eventos",
+    "noEvents": "Esta transação não emitiu eventos.",
+    "unknownEvent": "evento desconhecido",
+    "internalCalls": "Chamadas internas",
+    "loadInternalCalls": "Carregar chamadas internas",
+    "noInternalCalls": "Esta transação não fez chamadas internas."
   },
   "address": {
     "metaTitle": "Endereço {address}",
@@ -111,7 +123,16 @@
     "type": "Tipo",
     "balance": "Saldo",
     "sentTxs": "Transações enviadas",
-    "overview": "Visão geral"
+    "overview": "Visão geral",
+    "protocol": "Crédito de Regeneração",
+    "userType": "Tipo de usuário",
+    "notRegistered": "Não cadastrado no protocolo",
+    "registeredName": "Nome cadastrado",
+    "rcBalance": "Saldo de RC",
+    "rcCertified": "RC certificados (compensados)",
+    "rcTransfers": "Transferências de RC",
+    "noTransfers": "Nenhuma transferência de RC envolvendo este endereço.",
+    "showMore": "Mostrar mais"
   },
   "notFound": {
     "title": "Página não encontrada",
@@ -122,5 +143,121 @@
     "network": "Rede {name} · Chain ID {chainId}",
     "coin": "Moeda {coin}",
     "rpc": "RPC"
+  },
+  "nav": {
+    "token": "Token RC",
+    "protocol": "Protocolo"
+  },
+  "roles": {
+    "regenerator": "Regenerador",
+    "inspector": "Inspetor",
+    "researcher": "Pesquisador",
+    "developer": "Desenvolvedor",
+    "contributor": "Contribuidor",
+    "activist": "Ativista",
+    "supporter": "Apoiador",
+    "undefined": "Não cadastrado"
+  },
+  "token": {
+    "metaTitle": "Token RC",
+    "title": "Crédito de Regeneração (RC)",
+    "intro": "Token ERC-20 do protocolo. A oferta é fixa: todo RC nasce nos pools e só sai como recompensa por trabalho verificado. Quando alguém compensa, os tokens são queimados e viram certificado.",
+    "totalSupply": "Oferta total",
+    "totalSupplyHint": "já descontados os tokens queimados",
+    "locked": "Nos pools",
+    "lockedHint": "ainda não distribuídos",
+    "outsidePools": "Fora dos pools",
+    "outsidePoolsHint": "oferta total menos pools",
+    "certified": "Certificados",
+    "certifiedHint": "queimados em compensações",
+    "holders": "Detentores",
+    "holdersHint": "endereços com saldo",
+    "topHolders": "Maiores detentores",
+    "recentTransfers": "Transferências recentes",
+    "totalTransfers": "{count, plural, one {# no total} other {# no total}}",
+    "in": "entrada",
+    "out": "saída",
+    "burn": "Queimado",
+    "mint": "Emissão"
+  },
+  "protocol": {
+    "title": "Contratos do protocolo",
+    "intro": "Os {count} contratos do Crédito de Regeneração nesta rede. Os contratos são imutáveis e todo o histórico deles pode ser conferido aqui.",
+    "groups": {
+      "token": "Token e impacto",
+      "community": "Comunidade e convites",
+      "inspection": "Inspeções",
+      "roles": "Papéis e pools de recompensa",
+      "validation": "Validação e votos",
+      "other": "Outros"
+    }
+  },
+  "contracts": {
+    "RegenerationCredit": {
+      "description": "Token Crédito de Regeneração (RC), ERC-20 com oferta fixa de 1,31 bilhão. Todo token nasce guardado nos pools e só sai como recompensa por trabalho verificado. A queima gera o certificado de compensação."
+    },
+    "RegenerationCreditImpact": {
+      "description": "Calcula o impacto verificado do sistema (árvores, biodiversidade, carbono e área) e o impacto correspondente a cada token."
+    },
+    "CommunityRules": {
+      "description": "Registro central de usuários: tipo de cada endereço, convites aceitos e denúncias."
+    },
+    "InvitationRules": {
+      "description": "Regras de convite: quem pode convidar quem, intervalo entre convites e limites por tipo de usuário."
+    },
+    "SupporterRules": {
+      "description": "Cadastro aberto de Apoiadores e compensação direcionada: queima RC para um item da calculadora de impacto e paga 5% ao convidante."
+    },
+    "InspectionRules": {
+      "description": "Ciclo das inspeções, do pedido do Regenerador à realização pelo Inspetor e validação."
+    },
+    "RegenerationIndexRules": {
+      "description": "Tabelas do Índice de Regeneração usadas nas inspeções para estimar o impacto do Regenerador (árvores e biodiversidade)."
+    },
+    "RegeneratorRules": {
+      "description": "Regras e dados dos Regeneradores: área em regeneração, coordenadas, inspeções recebidas e pontuação."
+    },
+    "RegeneratorPool": {
+      "description": "Guarda os RC destinados aos Regeneradores e distribui as recompensas de cada Era conforme o nível de cada um."
+    },
+    "InspectorRules": {
+      "description": "Regras e dados dos Inspetores: inspeções realizadas, níveis e elegibilidade para recompensa."
+    },
+    "InspectorPool": {
+      "description": "Guarda os RC destinados aos Inspetores e distribui as recompensas de cada Era conforme o nível de cada um."
+    },
+    "ResearcherRules": {
+      "description": "Regras e dados dos Pesquisadores: publicação de pesquisas, métodos de avaliação e itens da calculadora de impacto."
+    },
+    "ResearcherPool": {
+      "description": "Guarda os RC destinados aos Pesquisadores e distribui as recompensas de cada Era conforme o nível de cada um."
+    },
+    "DeveloperRules": {
+      "description": "Regras e dados dos Desenvolvedores: relatórios de desenvolvimento publicados a cada Era."
+    },
+    "DeveloperPool": {
+      "description": "Guarda os RC destinados aos Desenvolvedores e distribui as recompensas de cada Era conforme o nível de cada um."
+    },
+    "ContributorRules": {
+      "description": "Regras e dados dos Contribuidores: relatórios de contribuição geral (educação, tradução, design, documentação)."
+    },
+    "ContributorPool": {
+      "description": "Guarda os RC destinados aos Contribuidores e distribui as recompensas de cada Era conforme o nível de cada um."
+    },
+    "ActivistRules": {
+      "description": "Regras e dados dos Ativistas: convites de Regeneradores e Inspetores e níveis ganhos quando os convidados completam inspeções."
+    },
+    "ActivistPool": {
+      "description": "Guarda os RC destinados aos Ativistas e distribui as recompensas de cada Era conforme o nível de cada um."
+    },
+    "ValidationRules": {
+      "description": "Análise e votação para invalidar usuários, inspeções e recursos."
+    },
+    "ValidationPool": {
+      "description": "Guarda os RC da validação e recompensa quem participa dos votos de invalidação."
+    },
+    "VoteRules": {
+      "description": "Define quem pode votar nas invalidações (Pesquisadores, Desenvolvedores e Contribuidores elegíveis)."
+    }
   }
 }

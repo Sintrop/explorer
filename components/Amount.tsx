@@ -16,7 +16,7 @@ export function Amount({ value, decimals = network.coinDecimals, symbol = networ
   const locale = useLocale()
   return (
     <span className="tabular-nums">
-      {formatUnitsLocale(value, decimals, locale, maxFractionDigits)} {symbol}
+      {formatUnitsLocale(value, decimals, locale, maxFractionDigits)}{symbol ? ` ${symbol}` : ""}
     </span>
   )
 }

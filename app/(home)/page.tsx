@@ -5,6 +5,8 @@ import { NetworkStats } from "./components/NetworkStats"
 import { LatestBlocks } from "./components/LatestBlocks"
 import { LatestTransactions } from "./components/LatestTransactions"
 import { RecentMiners } from "./components/RecentMiners"
+import { ProtocolActivity } from "./components/ProtocolActivity"
+import { hasRegistry } from "@/config/contracts/registry"
 
 function Hero() {
   const t = useTranslations("home")
@@ -28,8 +30,9 @@ export default function Home() {
         <NetworkStats />
         <div className="grid grid-cols-1 gap-6 xl:grid-cols-2 xl:items-start">
           <LatestBlocks />
-          <LatestTransactions />
+          {hasRegistry ? <ProtocolActivity /> : <LatestTransactions />}
         </div>
+        {hasRegistry && <LatestTransactions />}
         <RecentMiners />
       </div>
     </Screen>

@@ -7,6 +7,8 @@ import { Screen } from "@/components/Screen"
 import { IconAddress } from "@/components/IconAddress/IconAddress"
 import { CopyButton } from "@/components/CopyButton"
 import { shortenHash } from "@/lib/format"
+import { getContractLabel } from "@/config/contracts/registry"
+import { FileCode2 } from "lucide-react"
 import { AddressData } from "./components/AddressData"
 
 type Params = { params: Promise<{ address: string }> }
@@ -14,7 +16,8 @@ type Params = { params: Promise<{ address: string }> }
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { address } = await params
   const t = await getTranslations("address")
-  return { title: t("metaTitle", { address: shortenHash(address, 8, 6) }) }
+  const label = getContractLabel(address)
+  return { title: label ? label.name : t("metaTitle", { address: shortenHash(address, 8, 6) }) }
 }
 
 export default async function Address({ params }: Params): Promise<JSX.Element> {
@@ -24,21 +27,32 @@ export default async function Address({ params }: Params): Promise<JSX.Element> 
 
   const address = getAddress(raw)
   const t = await getTranslations("address")
+  const tc = await getTranslations("contracts")
+  const label = getContractLabel(address)
 
   return (
     <Screen>
       <div className="mb-6 flex items-center gap-4">
         <span className="flex shrink-0">
-          <IconAddress address={address} size={52} />
+          {label ? (
+            <span className="flex size-[52px] items-center justify-center rounded-full bg-accent text-accent-foreground">
+              <FileCode2 className="size-6" aria-hidden />
+            </span>
+          ) : (
+            <IconAddress address={address} size={52} />
+          )}
         </span>
         <div className="min-w-0">
-          <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">{t("title")}</h1>
+          <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">{label ? label.name : t("title")}</h1>
           <p className="mt-1 flex items-start gap-1">
             <span className="font-mono text-sm break-all text-muted-foreground sm:text-base">{address}</span>
             <CopyButton value={address} />
           </p>
         </div>
       </div>
+      {label && tc.has(`${label.name}.description`) && (
+        <p className="-mt-2 mb-6 max-w-3xl text-muted-foreground">{tc(`${label.name}.description`)}</p>
+      )}
       <AddressData address={address} />
     </Screen>
   )

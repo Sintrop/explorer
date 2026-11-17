@@ -6,10 +6,11 @@ import { Search } from "./Search"
 import { LanguageSwitcher } from "./LanguageSwitcher"
 import { ThemeToggle } from "./ThemeToggle"
 import { LiveBlock } from "./LiveBlock"
+import { MainNav } from "./MainNav"
 
 export function Header({ showSearch = true }: { showSearch?: boolean }): JSX.Element {
   return (
-    <header className="sticky top-0 z-20 w-full border-b bg-background/85 backdrop-blur">
+    <header className="z-20 w-full border-b bg-background/85 backdrop-blur md:sticky md:top-0">
       <div className="container mx-auto flex flex-wrap items-center justify-between gap-x-6 gap-y-3 px-4 py-3 sm:px-5">
         <Link href="/" className="flex items-center gap-2.5">
           {network.logoUrl && (
@@ -21,6 +22,7 @@ export function Header({ showSearch = true }: { showSearch?: boolean }): JSX.Ele
         </Link>
 
         <div className="flex items-center gap-1 sm:order-last">
+          <MainNav />
           <LiveBlock />
           <LanguageSwitcher />
           <ThemeToggle />

@@ -62,3 +62,40 @@ export async function getBlockRange(from: number, to: number): Promise<BlockProp
 
   return numbers.map((n) => blockCache.get(n)).filter((b): b is BlockProps<TxProps> => !!b)
 }
+
+export interface LogEntry {
+  address: string
+  topics: string[]
+  data: string
+  blockNumber: string
+  transactionHash: string
+  logIndex: string
+}
+
+export function getLogs(filter: { address?: string | string[]; topics?: (string | null)[]; fromBlock?: number; toBlock?: number }) {
+  return rpc<LogEntry[]>("eth_getLogs", [
+    {
+      address: filter.address,
+      topics: filter.topics,
+      fromBlock: numberToHex(filter.fromBlock ?? 0),
+      toBlock: filter.toBlock !== undefined ? numberToHex(filter.toBlock) : "latest",
+    },
+  ])
+}
+
+export const ethCall = (to: string, data: string) => rpc<string>("eth_call", [{ to, data }, "latest"])
+
+const timestampCache = new Map<number, number>()
+
+/** Block timestamps (seconds) for a list of block numbers, fetched in one batch. */
+export async function getBlockTimestamps(numbers: number[]): Promise<Map<number, number>> {
+  const missing = [...new Set(numbers)].filter((n) => !timestampCache.has(n))
+  for (let i = 0; i < missing.length; i += 100) {
+    const chunk = missing.slice(i, i + 100)
+    const blocks = await rpcBatch<{ timestamp: string } | null>(
+      chunk.map((n) => ({ method: "eth_getBlockByNumber", params: [numberToHex(n), false] })),
+    )
+    blocks.forEach((block, j) => block && timestampCache.set(chunk[j], Number(BigInt(block.timestamp))))
+  }
+  return new Map(numbers.map((n) => [n, timestampCache.get(n) ?? 0]))
+}

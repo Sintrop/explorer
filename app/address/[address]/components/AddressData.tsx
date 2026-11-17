@@ -9,6 +9,8 @@ import { DataItem, DataList } from "@/components/DataItem"
 import { Amount } from "@/components/Amount"
 import { Loading, RpcErrorMessage } from "@/components/QueryState"
 import { Card, CardBody, CardHeader } from "@/components/ui/Card"
+import { hasRegistry } from "@/config/contracts/registry"
+import { ProtocolSection } from "./ProtocolSection"
 
 export function AddressData({ address }: { address: string }): JSX.Element {
   const t = useTranslations("address")
@@ -46,19 +48,22 @@ export function AddressData({ address }: { address: string }): JSX.Element {
   const isContract = !!code.data && code.data !== "0x"
 
   return (
-    <Card>
-      <CardHeader title={t("overview")} />
-      <CardBody>
-        <DataList>
-          <DataItem label={t("type")}>
-            <span className="rounded-full bg-muted px-2.5 py-0.5 text-sm">{isContract ? t("contract") : t("account")}</span>
-          </DataItem>
-          <DataItem label={t("balance")}>
-            <Amount value={hexToBigInt(balance.data)} maxFractionDigits={18} />
-          </DataItem>
-          <DataItem label={t("sentTxs")}>{format.number(hexToBigInt(txCount.data))}</DataItem>
-        </DataList>
-      </CardBody>
-    </Card>
+    <div className="flex flex-col gap-6">
+      <Card>
+        <CardHeader title={t("overview")} />
+        <CardBody>
+          <DataList>
+            <DataItem label={t("type")}>
+              <span className="rounded-full bg-muted px-2.5 py-0.5 text-sm">{isContract ? t("contract") : t("account")}</span>
+            </DataItem>
+            <DataItem label={t("balance")}>
+              <Amount value={hexToBigInt(balance.data)} maxFractionDigits={18} />
+            </DataItem>
+            <DataItem label={t("sentTxs")}>{format.number(hexToBigInt(txCount.data))}</DataItem>
+          </DataList>
+        </CardBody>
+      </Card>
+      {hasRegistry && <ProtocolSection address={address} />}
+    </div>
   )
 }
