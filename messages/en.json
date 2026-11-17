@@ -1,0 +1,93 @@
+{
+  "common": {
+    "loading": "Loading…",
+    "rpcError": "Could not reach the network.",
+    "retry": "Try again",
+    "copy": "Copy",
+    "copied": "Copied",
+    "language": "Language",
+    "testnet": "Testnet",
+    "testnetTx": "This is a testnet transaction"
+  },
+  "search": {
+    "label": "Search for a transaction, address or block",
+    "placeholder": "Transaction hash, address, block number or hash",
+    "submit": "Search",
+    "searching": "Searching…",
+    "invalid": "Unrecognized value. Use an address (0x + 40 characters), a hash (0x + 64 characters) or a block number.",
+    "notFound": "No transaction or block found with this hash."
+  },
+  "home": {
+    "latestBlock": "Latest block",
+    "miner": "Miner",
+    "txs": "Transactions",
+    "txsInBlock": "Transactions in block #{number}",
+    "noTxs": "No transactions in this block.",
+    "networkData": "Network data",
+    "chainId": "Chain ID",
+    "name": "Name",
+    "coin": "Coin",
+    "rpc": "RPC"
+  },
+  "block": {
+    "metaTitle": "Block #{block}",
+    "title": "Block #{number}",
+    "notFound": "Block not found.",
+    "notFoundHint": "It may not have been mined yet.",
+    "hash": "Hash",
+    "timestamp": "Timestamp",
+    "miner": "Miner",
+    "transactions": "Transactions",
+    "parentHash": "Parent block",
+    "gasUsed": "Gas used",
+    "gasLimit": "Gas limit",
+    "difficulty": "Difficulty",
+    "totalDifficulty": "Total difficulty",
+    "size": "Size",
+    "bytes": "{size} bytes",
+    "extraData": "Extra data"
+  },
+  "tx": {
+    "metaTitle": "Transaction {hash}",
+    "title": "Transaction",
+    "notFound": "Transaction not found.",
+    "hash": "Hash",
+    "status": "Status",
+    "success": "Success",
+    "failed": "Failed",
+    "pending": "Pending",
+    "pendingHint": "The transaction is in the mempool and has not been included in a block yet.",
+    "block": "Block",
+    "confirmations": "{count, plural, one {# confirmation} other {# confirmations}}",
+    "timestamp": "Timestamp",
+    "from": "From",
+    "to": "To",
+    "contractCreated": "Contract created",
+    "value": "Value",
+    "fee": "Transaction fee",
+    "gasPrice": "Gas price",
+    "gasUsage": "Gas used / limit",
+    "nonce": "Nonce",
+    "position": "Position in block",
+    "input": "Input data",
+    "revertReason": "Revert reason",
+    "panic": "Panic: {message}",
+    "customError": "Custom error {selector}",
+    "noReason": "The contract did not provide a reason.",
+    "traceUnavailable": "Could not fetch the revert reason."
+  },
+  "address": {
+    "metaTitle": "Address {address}",
+    "title": "Address",
+    "contract": "Contract",
+    "account": "Account",
+    "type": "Type",
+    "balance": "Balance",
+    "sentTxs": "Sent transactions"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "The address, block or transaction is not valid.",
+    "back": "Back to home"
+  }
+}

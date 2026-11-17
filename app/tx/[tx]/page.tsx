@@ -1,23 +1,36 @@
-import { JSX } from "react";
-import { Screen } from "@/components/Screen/Screen";
-import { TransactionData } from "./components/TransactionData";
-import { TransactionReceipt } from "./components/TransactionReceipt";
-import { TestnetTag } from "@/components/TestnetTag/TestnetTag";
+import { JSX } from "react"
+import { notFound } from "next/navigation"
+import { Metadata } from "next"
+import { getTranslations } from "next-intl/server"
+import { Screen } from "@/components/Screen"
+import { TestnetTag } from "@/components/TestnetTag"
+import { network } from "@/config/network"
+import { shortenHash } from "@/lib/format"
+import { TransactionDetails } from "./components/TransactionDetails"
 
-export default async function Tx({ params }: { params: Promise<{ tx: string }> }): Promise<JSX.Element> {
+type Params = { params: Promise<{ tx: string }> }
+
+const isTxHash = (value: string) => /^0x[0-9a-f]{64}$/i.test(value)
+
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { tx } = await params
+  const t = await getTranslations("tx")
+  return { title: t("metaTitle", { hash: shortenHash(tx) }) }
+}
+
+export default async function Tx({ params }: Params): Promise<JSX.Element> {
+  const { tx } = await params
+  if (!isTxHash(tx)) notFound()
+
+  const t = await getTranslations("tx")
 
   return (
     <Screen>
-      <h2 className="font-bold lg:text-xl break-all">
-        Transaction {tx}
-      </h2>
+      <h1 className="text-2xl font-bold sm:text-3xl">{t("title")}</h1>
+      <p className="mt-2 font-mono text-sm break-all text-gray-600">{tx}</p>
 
-      {process.env.NEXT_PUBLIC_TESTNET === 'true' && (
-        <TestnetTag txWarning />
-      )}
-      <TransactionData tx={tx} />
-      <TransactionReceipt tx={tx} />
+      {network.isTestnet && <TestnetTag txWarning />}
+      <TransactionDetails hash={tx.toLowerCase()} />
     </Screen>
   )
 }

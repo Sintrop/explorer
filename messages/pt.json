@@ -1,0 +1,93 @@
+{
+  "common": {
+    "loading": "Carregando…",
+    "rpcError": "Não foi possível consultar a rede.",
+    "retry": "Tentar de novo",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "language": "Idioma",
+    "testnet": "Testnet",
+    "testnetTx": "Esta é uma transação de testnet"
+  },
+  "search": {
+    "label": "Buscar transação, endereço ou bloco",
+    "placeholder": "Hash da transação, endereço, número ou hash do bloco",
+    "submit": "Buscar",
+    "searching": "Buscando…",
+    "invalid": "Valor não reconhecido. Use um endereço (0x + 40 caracteres), um hash (0x + 64 caracteres) ou um número de bloco.",
+    "notFound": "Nenhuma transação ou bloco encontrado com esse hash."
+  },
+  "home": {
+    "latestBlock": "Último bloco",
+    "miner": "Minerador",
+    "txs": "Transações",
+    "txsInBlock": "Transações no bloco #{number}",
+    "noTxs": "Nenhuma transação neste bloco.",
+    "networkData": "Dados da rede",
+    "chainId": "Chain ID",
+    "name": "Nome",
+    "coin": "Moeda",
+    "rpc": "RPC"
+  },
+  "block": {
+    "metaTitle": "Bloco #{block}",
+    "title": "Bloco #{number}",
+    "notFound": "Bloco não encontrado.",
+    "notFoundHint": "Ele pode ainda não ter sido minerado.",
+    "hash": "Hash",
+    "timestamp": "Data",
+    "miner": "Minerador",
+    "transactions": "Transações",
+    "parentHash": "Bloco anterior",
+    "gasUsed": "Gas usado",
+    "gasLimit": "Limite de gas",
+    "difficulty": "Dificuldade",
+    "totalDifficulty": "Dificuldade total",
+    "size": "Tamanho",
+    "bytes": "{size} bytes",
+    "extraData": "Dados extras"
+  },
+  "tx": {
+    "metaTitle": "Transação {hash}",
+    "title": "Transação",
+    "notFound": "Transação não encontrada.",
+    "hash": "Hash",
+    "status": "Status",
+    "success": "Sucesso",
+    "failed": "Falhou",
+    "pending": "Pendente",
+    "pendingHint": "A transação está no mempool e ainda não entrou em um bloco.",
+    "block": "Bloco",
+    "confirmations": "{count, plural, one {# confirmação} other {# confirmações}}",
+    "timestamp": "Data",
+    "from": "De",
+    "to": "Para",
+    "contractCreated": "Contrato criado",
+    "value": "Valor",
+    "fee": "Taxa",
+    "gasPrice": "Preço do gas",
+    "gasUsage": "Gas usado / limite",
+    "nonce": "Nonce",
+    "position": "Posição no bloco",
+    "input": "Dados de entrada",
+    "revertReason": "Motivo da falha",
+    "panic": "Panic: {message}",
+    "customError": "Erro personalizado {selector}",
+    "noReason": "O contrato não informou motivo.",
+    "traceUnavailable": "Não foi possível obter o motivo da falha."
+  },
+  "address": {
+    "metaTitle": "Endereço {address}",
+    "title": "Endereço",
+    "contract": "Contrato",
+    "account": "Conta",
+    "type": "Tipo",
+    "balance": "Saldo",
+    "sentTxs": "Transações enviadas"
+  },
+  "notFound": {
+    "title": "Página não encontrada",
+    "body": "O endereço, bloco ou transação informado não é válido.",
+    "back": "Voltar ao início"
+  }
+}

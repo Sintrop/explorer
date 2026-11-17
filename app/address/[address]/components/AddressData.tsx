@@ -1,52 +1,48 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-"use client";
+"use client"
 
-import { JSX } from "react";
-import { DataItem } from "@/components/DataItem/DataItem";
-import { getLatestBalance } from "@/services/address/getLatestBalance";
-import { hexToDecimal } from "@/utils/hexToDecimal";
-import { useQuery } from "@tanstack/react-query";
-import { formatEther } from "ethers";
-import { getTxCountAddress } from "@/services/tx/getTxCountAddress";
+import { JSX } from "react"
+import { useQueries } from "@tanstack/react-query"
+import { useFormatter, useTranslations } from "next-intl"
+import { getBalance, getCode, getTransactionCount } from "@/services/chain"
+import { hexToBigInt } from "@/lib/format"
+import { DataItem, DataList } from "@/components/DataItem"
+import { Amount } from "@/components/Amount"
+import { Loading, RpcErrorMessage } from "@/components/QueryState"
 
-interface Props {
-  address: string;
-}
-export function AddressData({ address }: Props): JSX.Element {
-  const { data: responseLatestBalance, isLoading } = useQuery({
-    queryKey: ["getLatestBalance", address],
-    queryFn: () => getLatestBalance(address),
-  });
+export function AddressData({ address }: { address: string }): JSX.Element {
+  const t = useTranslations("address")
+  const format = useFormatter()
 
-  const { data: responseTxsCount, isLoading: isLoadingTxsCount } = useQuery({
-    queryKey: ["getTxsCountAddress", address],
-    queryFn: () => getTxCountAddress(address),
-  });
+  const [balance, txCount, code] = useQueries({
+    queries: [
+      { queryKey: ["balance", address], queryFn: () => getBalance(address) },
+      { queryKey: ["txCount", address], queryFn: () => getTransactionCount(address) },
+      { queryKey: ["code", address], queryFn: () => getCode(address), staleTime: Infinity },
+    ],
+  })
 
-  const hexBalance = responseLatestBalance ? (responseLatestBalance?.result as string) : '0x0';
-  const hexTxCount = responseTxsCount ? (responseTxsCount?.result as string) : '0x0';
-
-  if (isLoading || isLoadingTxsCount) {
-    return <p>loading data...</p>;
+  if (balance.isLoading || txCount.isLoading || code.isLoading) return <Loading />
+  if (balance.isError || txCount.isError || code.isError) {
+    return (
+      <RpcErrorMessage
+        onRetry={() => {
+          balance.refetch()
+          txCount.refetch()
+          code.refetch()
+        }}
+      />
+    )
   }
 
-  const balance = parseFloat(formatEther(BigInt(hexToDecimal(hexBalance))));
-  const txCount = hexToDecimal(hexTxCount);
+  const isContract = !!code.data && code.data !== "0x"
 
   return (
-    <div className="flex flex-col gap-3 mt-10">
-      <DataItem
-        label="Balance"
-        value={Intl.NumberFormat("pt-BR", { maximumFractionDigits: 5 }).format(
-          balance
-        )}
-        suffix={process.env.NEXT_PUBLIC_COIN_NAME}
-      />
-
-      <DataItem
-        label="Transactions count"
-        value={txCount}
-      />
-    </div>
-  );
+    <DataList>
+      <DataItem label={t("type")}>{isContract ? t("contract") : t("account")}</DataItem>
+      <DataItem label={t("balance")}>
+        <Amount value={hexToBigInt(balance.data)} maxFractionDigits={18} />
+      </DataItem>
+      <DataItem label={t("sentTxs")}>{format.number(hexToBigInt(txCount.data))}</DataItem>
+    </DataList>
+  )
 }

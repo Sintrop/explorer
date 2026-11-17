@@ -1,20 +1,19 @@
-import { Screen } from "@/components/Screen/Screen";
-import { LatestBlock } from "./components/LatestBlock";
-import { Search } from "./components/Search";
-import { TxsInTheLatestBlock } from "./components/TxsInTheLatestBlock";
-import { NetworkData } from "./components/NetworkData";
+import { Screen } from "@/components/Screen"
+import { Search } from "@/components/Search"
+import { LatestBlock } from "./components/LatestBlock"
+import { TxsInTheLatestBlock } from "./components/TxsInTheLatestBlock"
+import { NetworkData } from "./components/NetworkData"
 
 export default function Home() {
-
   return (
-    <Screen>
+    <Screen showSearch={false}>
       <Search />
 
-      <div className="flex flex-wrap lg:flex-nowrap w-full gap-10">
+      <div className="flex w-full flex-col gap-10 lg:flex-row">
         <LatestBlock />
         <TxsInTheLatestBlock />
         <NetworkData />
       </div>
     </Screen>
-  );
+  )
 }

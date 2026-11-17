@@ -1,59 +1,90 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 "use client"
 
-import { DataItem } from "@/components/DataItem/DataItem"
-import { useTimeSince } from "@/hooks/useTimeSince"
-import { getBlockByNumber } from "@/services/block/getBlockByNumber"
-import { BlockProps } from "@/types/block"
-import { decimalToHex } from "@/utils/decimalToHex"
-import { hexToDecimal } from "@/utils/hexToDecimal"
+import { JSX } from "react"
 import { useQuery } from "@tanstack/react-query"
-import { JSX, useEffect, useState } from "react"
+import { useFormatter, useTranslations } from "next-intl"
+import { toUtf8String } from "ethers"
+import { getBlock } from "@/services/chain"
+import { hexToBigInt, hexToNumber } from "@/lib/format"
+import { DataItem, DataList } from "@/components/DataItem"
+import { AddressLink, BlockLink, TxLink } from "@/components/Links"
+import { Timestamp } from "@/components/Timestamp"
+import { Loading, NotFoundMessage, RpcErrorMessage } from "@/components/QueryState"
 
-interface Props {
-  block: string
+function decodeExtraData(hex: string): string {
+  try {
+    // geth-style extraData is RLP; keep only the printable characters
+    const text = toUtf8String(hex, () => 0).replace(/[^\x20-\x7e]+/g, " ").trim()
+    return text || hex
+  } catch {
+    return hex
+  }
 }
-export function BlockData({ block }: Props): JSX.Element {
-  const blockHex = decimalToHex(parseInt(block))
-  const [timestamp, setTimestamp] = useState<number>(0)
-  const { formatted } = useTimeSince(new Date(timestamp * 1000))
 
-  const { data, isLoading, isError } = useQuery({
-    queryKey: ['blockByNumberHex', blockHex],
-    queryFn: () => getBlockByNumber(blockHex),
-    enabled: !!blockHex
+export function BlockData({ block }: { block: string }): JSX.Element {
+  const t = useTranslations("block")
+  const format = useFormatter()
+
+  const { data, isLoading, isError, refetch } = useQuery({
+    queryKey: ["block", block],
+    queryFn: () => getBlock(block),
   })
 
-  const blockData = data ? data?.result as BlockProps : null
+  if (isLoading) return <Loading />
+  if (isError) return <RpcErrorMessage onRetry={() => refetch()} />
+  if (!data) return <NotFoundMessage title={t("notFound")} hint={t("notFoundHint")} />
 
-  useEffect(() => {
-    if (blockData) {
-      setTimestamp(hexToDecimal(blockData?.timestamp))
-    }
-  }, [blockData])
-  
-  if (isLoading) {
-    return <p>loading data...</p>
-  }
-
-  if (isError || !blockData) {
-    return <p>Error on get data</p>
-  }
+  const number = hexToBigInt(data.number)
+  const gasUsed = hexToBigInt(data.gasUsed)
+  const gasLimit = hexToBigInt(data.gasLimit)
+  const gasPercent = gasLimit > BigInt(0) ? Number((gasUsed * BigInt(10000)) / gasLimit) / 10000 : 0
 
   return (
-    <div className="flex flex-col gap-3 mt-10">
-      <DataItem label="Hash" value={blockData.hash} />
-      <DataItem 
-        label="Date" 
-        value={formatted}
-      />
-      <DataItem label="Miner" value={blockData.miner} linkToAddress />
-      <DataItem label="Parent hash" value={blockData.parentHash} />
-      <DataItem label="Gas used" value={hexToDecimal(blockData.gasUsed).toString()} />
-      <DataItem label="Gas limit" value={hexToDecimal(blockData.gasLimit).toString()} />
-      <DataItem label="Difficulty" value={hexToDecimal(blockData.difficulty).toString()} />
-      <DataItem label="Total difficulty" value={hexToDecimal(blockData.totalDifficulty).toString()} />
-      <DataItem label="Size" value={hexToDecimal(blockData.size).toString()} />
-    </div>
+    <>
+      <h1 className="text-3xl font-bold sm:text-4xl">{t("title", { number: format.number(number) })}</h1>
+
+      <DataList>
+        <DataItem label={t("hash")}>
+          <span className="font-mono text-sm">{data.hash}</span>
+        </DataItem>
+        <DataItem label={t("timestamp")}>
+          <Timestamp seconds={hexToNumber(data.timestamp)} />
+        </DataItem>
+        <DataItem label={t("miner")}>
+          <AddressLink address={data.miner} />
+        </DataItem>
+        <DataItem label={t("transactions")}>
+          {data.transactions.length === 0 ? (
+            "0"
+          ) : (
+            <ul className="flex flex-col gap-1">
+              {data.transactions.map((hash) => (
+                <li key={hash}>
+                  <TxLink hash={hash} />
+                </li>
+              ))}
+            </ul>
+          )}
+        </DataItem>
+        <DataItem label={t("parentHash")}>
+          {number > BigInt(0) ? (
+            <BlockLink block={number - BigInt(1)} label={data.parentHash} />
+          ) : (
+            <span className="font-mono text-sm">{data.parentHash}</span>
+          )}
+        </DataItem>
+        <DataItem label={t("gasUsed")}>
+          {format.number(gasUsed)}{" "}
+          <span className="text-gray-500">({format.number(gasPercent, { style: "percent", maximumFractionDigits: 2 })})</span>
+        </DataItem>
+        <DataItem label={t("gasLimit")}>{format.number(gasLimit)}</DataItem>
+        <DataItem label={t("difficulty")}>{format.number(hexToBigInt(data.difficulty))}</DataItem>
+        {data.totalDifficulty && (
+          <DataItem label={t("totalDifficulty")}>{format.number(hexToBigInt(data.totalDifficulty))}</DataItem>
+        )}
+        <DataItem label={t("size")}>{t("bytes", { size: format.number(hexToNumber(data.size)) })}</DataItem>
+        <DataItem label={t("extraData")}>{decodeExtraData(data.extraData)}</DataItem>
+      </DataList>
+    </>
   )
 }

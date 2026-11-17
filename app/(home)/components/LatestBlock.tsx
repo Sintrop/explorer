@@ -1,78 +1,47 @@
 "use client"
 
-import { JSX } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { getLatestBlock } from "@/services/block/getLatestBlock";
-import { hexToDecimal } from "@/utils/hexToDecimal";
-import { getBlockByNumber } from "@/services/block/getBlockByNumber";
-import Link from "next/link";
-import { useTimeSince } from "@/hooks/useTimeSince";
-import { IconAddress } from "@/components/IconAddress/IconAddress";
-
-const refetchInterval = process.env.NEXT_PUBLIC_REFETCH_INTERVAL ? parseInt(process.env.NEXT_PUBLIC_REFETCH_INTERVAL) : 30000
+import { JSX } from "react"
+import Link from "next/link"
+import { useFormatter, useNow, useTranslations } from "next-intl"
+import { useLatestBlock } from "@/hooks/useLatestBlock"
+import { hexToBigInt, hexToNumber, shortenHash } from "@/lib/format"
+import { IconAddress } from "@/components/IconAddress/IconAddress"
 
 export function LatestBlock(): JSX.Element {
-  const { data } = useQuery({
-    queryKey: ['latestBlock'],
-    queryFn: getLatestBlock,
-    refetchInterval
-  })
+  const t = useTranslations("home")
+  const format = useFormatter()
+  const now = useNow({ updateInterval: 1000 })
+  const { data: block } = useLatestBlock()
 
-  const latestBlockHex = data && data.result as string
+  const number = block ? hexToBigInt(block.number) : null
 
-  const { data: blockData } = useQuery({
-    queryKey: ['blockByNumberHex', latestBlockHex],
-    queryFn: () => getBlockByNumber(latestBlockHex),
-    enabled: !!latestBlockHex
-  })
+  return (
+    <section className="flex shrink-0 flex-col gap-2">
+      <h2 className="text-gray-700">{t("latestBlock")}</h2>
 
-  let latestBlock = 0
-
-  if (data) {
-    const response = hexToDecimal(data.result)
-    latestBlock = response
-  }
-
-  let timestamp = 0
-
-  if (blockData) {
-    timestamp = hexToDecimal(blockData?.result?.timestamp)
-  }
-
-  const { formatted } = useTimeSince(new Date(timestamp * 1000))
-
-  return(
-    <div className="flex flex-col gap-1">
-      <p className="text-black">Latest block</p>
-      
-      <Link 
-        className="rounded-2xl p-3 border w-52 flex flex-col gap-2"
-        href={`/block/${latestBlock}`}
+      <Link
+        className="flex w-full flex-col gap-2 rounded-2xl border p-4 hover:border-gray-400 sm:w-64"
+        href={number !== null ? `/block/${number}` : "#"}
+        aria-busy={!block}
       >
-        <p className="font-bold text-2xl">{latestBlock}</p>
-        <div className="flex items-center gap-2">
-          <p className="text-gray-500">Miner:</p>
-          {blockData && (
+        <p className="text-2xl font-bold tabular-nums">{number !== null ? format.number(number) : "…"}</p>
+        <div className="flex items-center gap-2 text-sm">
+          <span className="text-gray-500">{t("miner")}:</span>
+          {block && (
             <>
-              <IconAddress address={blockData?.result?.miner} size={20}/>
-              <p className="text-sm truncate text-ellipsis max-w-[50%]">
-                {blockData?.result?.miner}
-              </p>
+              <IconAddress address={block.miner} size={18} />
+              <span className="font-mono">{shortenHash(block.miner, 6, 4)}</span>
             </>
           )}
         </div>
-        <div className="flex items-center gap-3">
-          <p className="text-gray-500">Txs:</p>
-          <p className="text-sm truncate text-ellipsis">
-            {blockData && blockData?.result?.transactions?.length}
-          </p>
+        <div className="flex items-center gap-2 text-sm">
+          <span className="text-gray-500">{t("txs")}:</span>
+          <span>{block?.transactions.length ?? "…"}</span>
         </div>
-        <div className="flex items-center gap-3">
-          <p className="text-gray-500 text-sm">
-            {formatted}
-          </p>
-        </div>
+        <p className="text-sm text-gray-500">
+          {block ? format.relativeTime(new Date(hexToNumber(block.timestamp) * 1000), now) : "…"}
+        </p>
       </Link>
-    </div>
+    </section>
   )
 }
