@@ -1,13 +1,18 @@
-export function detectInputType(value: string): 'address' | 'tx' | 'blockNumber' | 'unknown' {
-  const trimmed = value.trim().toLowerCase();
+export type SearchInputType = "address" | "hash" | "blockNumber" | "unknown"
 
-  //const isHex = /^0x[0-9a-f]+$/i.test(trimmed);
-  const isAddress = /^0x[0-9a-f]{40}$/i.test(trimmed);
-  const isTxHash = /^0x[0-9a-f]{64}$/i.test(trimmed);
-  const isBlockNumber = /^\d+$/i.test(trimmed);
+export function detectInputType(value: string): SearchInputType {
+  const trimmed = value.trim()
 
-  if (isAddress) return 'address';
-  if (isTxHash) return 'tx';
-  if (isBlockNumber) return 'blockNumber';
-  return 'unknown';
+  if (/^0x[0-9a-f]{40}$/i.test(trimmed)) return "address"
+  if (/^0x[0-9a-f]{64}$/i.test(trimmed)) return "hash"
+  if (/^\d+$/.test(trimmed) && Number.isSafeInteger(Number(trimmed))) return "blockNumber"
+  return "unknown"
+}
+
+export function isBlockHash(value: string): boolean {
+  return /^0x[0-9a-f]{64}$/i.test(value)
+}
+
+export function isBlockNumber(value: string): boolean {
+  return /^\d+$/.test(value) && Number.isSafeInteger(Number(value))
 }

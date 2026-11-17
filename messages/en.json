@@ -1,0 +1,313 @@
+{
+  "common": {
+    "loading": "Loading…",
+    "rpcError": "Could not reach the network.",
+    "retry": "Try again",
+    "copy": "Copy",
+    "copied": "Copied",
+    "language": "Language",
+    "testnet": "Testnet",
+    "testnetTx": "This is a testnet transaction",
+    "theme": "Theme",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "themeSystem": "System",
+    "latestBlock": "Latest block"
+  },
+  "search": {
+    "label": "Search for a transaction, address or block",
+    "placeholder": "Transaction hash, address, block number or hash",
+    "submit": "Search",
+    "searching": "Searching…",
+    "invalid": "Unrecognized value. Use an address (0x + 40 characters), a hash (0x + 64 characters) or a block number.",
+    "notFound": "No transaction or block found with this hash."
+  },
+  "home": {
+    "heroTitle": "Sintrop blockchain explorer",
+    "heroSubtitle": "Browse blocks, transactions and addresses of the network that records the Regeneration Credit.",
+    "blockHeight": "Block height",
+    "avgBlockTime": "Average block time",
+    "seconds": "{value} s",
+    "hashrate": "Estimated hashrate",
+    "difficulty": "Difficulty",
+    "gasPrice": "Gas price",
+    "pendingTxs": "Pending transactions",
+    "latestBlocks": "Latest blocks",
+    "latestTxs": "Latest transactions",
+    "window": "last {count} blocks (~{minutes} min)",
+    "noRecentTxs": "No transactions in the last {count} blocks. The network keeps mining empty blocks.",
+    "miners": "Recent miners",
+    "minerShare": "{count, plural, one {# block} other {# blocks}}",
+    "txsCount": "{count, plural, =0 {no transactions} one {# transaction} other {# transactions}}",
+    "colBlock": "Block",
+    "colAge": "Age",
+    "colMiner": "Miner",
+    "colTxs": "Transactions",
+    "colHash": "Hash",
+    "colFrom": "From",
+    "colTo": "To",
+    "colValue": "Value",
+    "protocolActivity": "Recent protocol activity",
+    "viewContracts": "View contracts",
+    "noProtocolActivity": "No protocol contract events in the last ~70 days."
+  },
+  "block": {
+    "metaTitle": "Block #{block}",
+    "title": "Block #{number}",
+    "notFound": "Block not found.",
+    "notFoundHint": "It may not have been mined yet.",
+    "hash": "Hash",
+    "timestamp": "Timestamp",
+    "miner": "Miner",
+    "transactions": "Transactions",
+    "parentHash": "Parent hash",
+    "gasUsed": "Gas used",
+    "gasLimit": "Gas limit",
+    "difficulty": "Difficulty",
+    "totalDifficulty": "Total difficulty",
+    "size": "Size",
+    "bytes": "{size} bytes",
+    "extraData": "Extra data",
+    "prev": "Previous block",
+    "next": "Next block",
+    "overview": "Overview",
+    "txList": "Transactions",
+    "noTxs": "This block has no transactions.",
+    "contractCreation": "Contract creation"
+  },
+  "tx": {
+    "metaTitle": "Transaction {hash}",
+    "title": "Transaction",
+    "notFound": "Transaction not found.",
+    "hash": "Hash",
+    "status": "Status",
+    "success": "Success",
+    "failed": "Failed",
+    "pending": "Pending",
+    "pendingHint": "The transaction is in the mempool and has not been included in a block yet.",
+    "block": "Block",
+    "confirmations": "{count, plural, one {# confirmation} other {# confirmations}}",
+    "timestamp": "Timestamp",
+    "from": "From",
+    "to": "To",
+    "contractCreated": "Contract created",
+    "value": "Value",
+    "fee": "Transaction fee",
+    "gasPrice": "Gas price",
+    "gasUsage": "Gas used / limit",
+    "nonce": "Nonce",
+    "position": "Position in block",
+    "input": "Input data",
+    "revertReason": "Revert reason",
+    "panic": "Panic: {message}",
+    "customError": "Custom error {selector}",
+    "noReason": "The contract did not provide a reason.",
+    "traceUnavailable": "Could not fetch the revert reason.",
+    "overview": "Overview",
+    "details": "Gas and execution details",
+    "method": "Method",
+    "tokenTransfers": "{count, plural, one {Token transfer} other {Token transfers (#)}}",
+    "rawInput": "View raw data",
+    "events": "Events",
+    "noEvents": "This transaction emitted no events.",
+    "unknownEvent": "unknown event",
+    "internalCalls": "Internal calls",
+    "loadInternalCalls": "Load internal calls",
+    "noInternalCalls": "This transaction made no internal calls."
+  },
+  "address": {
+    "metaTitle": "Address {address}",
+    "title": "Address",
+    "contract": "Contract",
+    "account": "Account",
+    "type": "Type",
+    "balance": "Balance",
+    "sentTxs": "Sent transactions",
+    "overview": "Overview",
+    "protocol": "Regeneration Credit",
+    "userType": "User type",
+    "notRegistered": "Not registered in the protocol",
+    "registeredName": "Registered name",
+    "rcBalance": "RC balance",
+    "rcCertified": "Certified (offset) RC",
+    "rcTransfers": "RC transfers",
+    "noTransfers": "No RC transfers involving this address.",
+    "showMore": "Show more"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "The address, block or transaction is not valid.",
+    "back": "Back to home"
+  },
+  "footer": {
+    "network": "{name} network · Chain ID {chainId}",
+    "coin": "{coin} coin",
+    "rpc": "RPC"
+  },
+  "nav": {
+    "token": "RC token",
+    "protocol": "Protocol",
+    "network": "Network"
+  },
+  "roles": {
+    "regenerator": "Regenerator",
+    "inspector": "Inspector",
+    "researcher": "Researcher",
+    "developer": "Developer",
+    "contributor": "Contributor",
+    "activist": "Activist",
+    "supporter": "Supporter",
+    "undefined": "Not registered"
+  },
+  "token": {
+    "metaTitle": "RC token",
+    "title": "Regeneration Credit (RC)",
+    "intro": "The protocol's ERC-20 token. Supply is fixed: every RC starts in the pools and only leaves as a reward for verified work. When someone offsets, the tokens are burned and become a certificate.",
+    "totalSupply": "Total supply",
+    "totalSupplyHint": "net of burned tokens",
+    "locked": "In pools",
+    "lockedHint": "not distributed yet",
+    "outsidePools": "Outside pools",
+    "outsidePoolsHint": "total supply minus pools",
+    "certified": "Certified",
+    "certifiedHint": "burned in offsets",
+    "holders": "Holders",
+    "holdersHint": "addresses with a balance",
+    "topHolders": "Top holders",
+    "recentTransfers": "Recent transfers",
+    "totalTransfers": "{count, plural, one {# in total} other {# in total}}",
+    "in": "in",
+    "out": "out",
+    "burn": "Burned",
+    "mint": "Mint"
+  },
+  "protocol": {
+    "title": "Protocol contracts",
+    "intro": "The {count} Regeneration Credit contracts on this network. The contracts are immutable and their full history can be checked here.",
+    "groups": {
+      "token": "Token and impact",
+      "community": "Community and invitations",
+      "inspection": "Inspections",
+      "roles": "Roles and reward pools",
+      "validation": "Validation and votes",
+      "other": "Other"
+    }
+  },
+  "contracts": {
+    "RegenerationCredit": {
+      "description": "Regeneration Credit token (RC), an ERC-20 with a fixed supply of 1.31 billion. Every token starts locked in the pools and only leaves as a reward for verified work. Burning tokens issues the offset certificate."
+    },
+    "RegenerationCreditImpact": {
+      "description": "Calculates the verified impact of the system (trees, biodiversity, carbon and area) and the impact backing each token."
+    },
+    "CommunityRules": {
+      "description": "Central user registry: the type of each address, accepted invitations and reports."
+    },
+    "InvitationRules": {
+      "description": "Invitation rules: who can invite whom, the delay between invitations and limits per user type."
+    },
+    "SupporterRules": {
+      "description": "Open Supporter registration and targeted offsets: burns RC for an impact calculator item and pays 5% to the inviter."
+    },
+    "InspectionRules": {
+      "description": "Lifecycle of inspections, from the Regenerator's request to the Inspector's realization and validation."
+    },
+    "RegenerationIndexRules": {
+      "description": "Regeneration Index tables used by inspections to estimate a Regenerator's impact (trees and biodiversity)."
+    },
+    "RegeneratorRules": {
+      "description": "Regenerator rules and data: area under regeneration, coordinates, inspections received and score."
+    },
+    "RegeneratorPool": {
+      "description": "Holds the RC allocated to Regenerators and distributes each Era's rewards according to each user's level."
+    },
+    "InspectorRules": {
+      "description": "Inspector rules and data: inspections performed, levels and reward eligibility."
+    },
+    "InspectorPool": {
+      "description": "Holds the RC allocated to Inspectors and distributes each Era's rewards according to each user's level."
+    },
+    "ResearcherRules": {
+      "description": "Researcher rules and data: published research, evaluation methods and impact calculator items."
+    },
+    "ResearcherPool": {
+      "description": "Holds the RC allocated to Researchers and distributes each Era's rewards according to each user's level."
+    },
+    "DeveloperRules": {
+      "description": "Developer rules and data: development reports published each Era."
+    },
+    "DeveloperPool": {
+      "description": "Holds the RC allocated to Developers and distributes each Era's rewards according to each user's level."
+    },
+    "ContributorRules": {
+      "description": "Contributor rules and data: general contribution reports (education, translation, design, documentation)."
+    },
+    "ContributorPool": {
+      "description": "Holds the RC allocated to Contributors and distributes each Era's rewards according to each user's level."
+    },
+    "ActivistRules": {
+      "description": "Activist rules and data: invitations of Regenerators and Inspectors and levels earned when invitees complete inspections."
+    },
+    "ActivistPool": {
+      "description": "Holds the RC allocated to Activists and distributes each Era's rewards according to each user's level."
+    },
+    "ValidationRules": {
+      "description": "Review and voting to invalidate users, inspections and resources."
+    },
+    "ValidationPool": {
+      "description": "Holds the validation RC and rewards those who take part in invalidation votes."
+    },
+    "VoteRules": {
+      "description": "Defines who can vote on invalidations (eligible Researchers, Developers and Contributors)."
+    }
+  },
+  "network": {
+    "title": "Network",
+    "intro": "Status of the public nodes, difficulty, estimated hashrate, block time and miners of the network.",
+    "range": "Range",
+    "ranges": {
+      "1d": "24 hours",
+      "7d": "7 days",
+      "30d": "30 days",
+      "90d": "90 days"
+    },
+    "updating": "Updating…",
+    "height": "Block height",
+    "avgBlockTime": "Average block time",
+    "hashrateAvg": "Estimated hashrate",
+    "difficultyNow": "Current difficulty",
+    "blockReward": "Block reward",
+    "chainId": "Chain ID",
+    "secondsValue": "{value} s",
+    "hashrate": "Estimated hashrate",
+    "difficulty": "Difficulty",
+    "blockTime": "Average block time",
+    "viewTable": "View table",
+    "colDate": "Date",
+    "nodes": "Public nodes",
+    "nodesHint": "refreshes every 30 s",
+    "colNode": "Node",
+    "colP2p": "P2P",
+    "colRpc": "RPC",
+    "colClient": "Client",
+    "colHeight": "Height",
+    "colPeers": "Peers",
+    "colLatency": "Latency",
+    "reachable": "reachable",
+    "unreachable": "unreachable",
+    "online": "online",
+    "offline": "offline",
+    "rpcClosed": "closed",
+    "miners24h": "Miners in the last 24 hours",
+    "minersHint": "sampled estimate (1 in every {sample} blocks)",
+    "approxBlocks": "~{count} blocks",
+    "forkTitle": "Next protocol change",
+    "forkReward": "After block {block}, the block reward drops from {before} to {after} {coin}.",
+    "forkGeneric": "Protocol change scheduled for block {block}.",
+    "forkEras": "From then on, it drops another 20% every {era} blocks.",
+    "forkBlock": "Activation block",
+    "forkRemaining": "Blocks remaining",
+    "forkEta": "Estimated date",
+    "forkEtaHint": "from the range's average block time"
+  }
+}

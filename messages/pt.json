@@ -1,0 +1,313 @@
+{
+  "common": {
+    "loading": "Carregando…",
+    "rpcError": "Não foi possível consultar a rede.",
+    "retry": "Tentar de novo",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "language": "Idioma",
+    "testnet": "Testnet",
+    "testnetTx": "Esta é uma transação de testnet",
+    "theme": "Tema",
+    "themeLight": "Claro",
+    "themeDark": "Escuro",
+    "themeSystem": "Automático",
+    "latestBlock": "Último bloco"
+  },
+  "search": {
+    "label": "Buscar transação, endereço ou bloco",
+    "placeholder": "Hash da transação, endereço, número ou hash do bloco",
+    "submit": "Buscar",
+    "searching": "Buscando…",
+    "invalid": "Valor não reconhecido. Use um endereço (0x + 40 caracteres), um hash (0x + 64 caracteres) ou um número de bloco.",
+    "notFound": "Nenhuma transação ou bloco encontrado com esse hash."
+  },
+  "home": {
+    "heroTitle": "Explorer da blockchain Sintrop",
+    "heroSubtitle": "Consulte blocos, transações e endereços da rede que registra o Crédito de Regeneração.",
+    "blockHeight": "Altura do bloco",
+    "avgBlockTime": "Tempo médio de bloco",
+    "seconds": "{value} s",
+    "hashrate": "Hashrate estimado",
+    "difficulty": "Dificuldade",
+    "gasPrice": "Preço do gas",
+    "pendingTxs": "Transações pendentes",
+    "latestBlocks": "Últimos blocos",
+    "latestTxs": "Últimas transações",
+    "window": "últimos {count} blocos (~{minutes} min)",
+    "noRecentTxs": "Nenhuma transação nos últimos {count} blocos. A rede segue minerando blocos vazios.",
+    "miners": "Mineradores recentes",
+    "minerShare": "{count, plural, one {# bloco} other {# blocos}}",
+    "txsCount": "{count, plural, =0 {sem transações} one {# transação} other {# transações}}",
+    "colBlock": "Bloco",
+    "colAge": "Idade",
+    "colMiner": "Minerador",
+    "colTxs": "Transações",
+    "colHash": "Hash",
+    "colFrom": "De",
+    "colTo": "Para",
+    "colValue": "Valor",
+    "protocolActivity": "Atividade recente do protocolo",
+    "viewContracts": "Ver contratos",
+    "noProtocolActivity": "Nenhum evento dos contratos do protocolo nos últimos ~70 dias."
+  },
+  "block": {
+    "metaTitle": "Bloco #{block}",
+    "title": "Bloco #{number}",
+    "notFound": "Bloco não encontrado.",
+    "notFoundHint": "Ele pode ainda não ter sido minerado.",
+    "hash": "Hash",
+    "timestamp": "Data",
+    "miner": "Minerador",
+    "transactions": "Transações",
+    "parentHash": "Hash do bloco anterior",
+    "gasUsed": "Gas usado",
+    "gasLimit": "Limite de gas",
+    "difficulty": "Dificuldade",
+    "totalDifficulty": "Dificuldade total",
+    "size": "Tamanho",
+    "bytes": "{size} bytes",
+    "extraData": "Dados extras",
+    "prev": "Bloco anterior",
+    "next": "Próximo bloco",
+    "overview": "Visão geral",
+    "txList": "Transações",
+    "noTxs": "Este bloco não tem transações.",
+    "contractCreation": "Criação de contrato"
+  },
+  "tx": {
+    "metaTitle": "Transação {hash}",
+    "title": "Transação",
+    "notFound": "Transação não encontrada.",
+    "hash": "Hash",
+    "status": "Status",
+    "success": "Sucesso",
+    "failed": "Falhou",
+    "pending": "Pendente",
+    "pendingHint": "A transação está no mempool e ainda não entrou em um bloco.",
+    "block": "Bloco",
+    "confirmations": "{count, plural, one {# confirmação} other {# confirmações}}",
+    "timestamp": "Data",
+    "from": "De",
+    "to": "Para",
+    "contractCreated": "Contrato criado",
+    "value": "Valor",
+    "fee": "Taxa",
+    "gasPrice": "Preço do gas",
+    "gasUsage": "Gas usado / limite",
+    "nonce": "Nonce",
+    "position": "Posição no bloco",
+    "input": "Dados de entrada",
+    "revertReason": "Motivo da falha",
+    "panic": "Panic: {message}",
+    "customError": "Erro personalizado {selector}",
+    "noReason": "O contrato não informou motivo.",
+    "traceUnavailable": "Não foi possível obter o motivo da falha.",
+    "overview": "Visão geral",
+    "details": "Detalhes de gas e execução",
+    "method": "Método",
+    "tokenTransfers": "{count, plural, one {Transferência de token} other {Transferências de tokens (#)}}",
+    "rawInput": "Ver dados brutos",
+    "events": "Eventos",
+    "noEvents": "Esta transação não emitiu eventos.",
+    "unknownEvent": "evento desconhecido",
+    "internalCalls": "Chamadas internas",
+    "loadInternalCalls": "Carregar chamadas internas",
+    "noInternalCalls": "Esta transação não fez chamadas internas."
+  },
+  "address": {
+    "metaTitle": "Endereço {address}",
+    "title": "Endereço",
+    "contract": "Contrato",
+    "account": "Conta",
+    "type": "Tipo",
+    "balance": "Saldo",
+    "sentTxs": "Transações enviadas",
+    "overview": "Visão geral",
+    "protocol": "Crédito de Regeneração",
+    "userType": "Tipo de usuário",
+    "notRegistered": "Não cadastrado no protocolo",
+    "registeredName": "Nome cadastrado",
+    "rcBalance": "Saldo de RC",
+    "rcCertified": "RC certificados (compensados)",
+    "rcTransfers": "Transferências de RC",
+    "noTransfers": "Nenhuma transferência de RC envolvendo este endereço.",
+    "showMore": "Mostrar mais"
+  },
+  "notFound": {
+    "title": "Página não encontrada",
+    "body": "O endereço, bloco ou transação informado não é válido.",
+    "back": "Voltar ao início"
+  },
+  "footer": {
+    "network": "Rede {name} · Chain ID {chainId}",
+    "coin": "Moeda {coin}",
+    "rpc": "RPC"
+  },
+  "nav": {
+    "token": "Token RC",
+    "protocol": "Protocolo",
+    "network": "Rede"
+  },
+  "roles": {
+    "regenerator": "Regenerador",
+    "inspector": "Inspetor",
+    "researcher": "Pesquisador",
+    "developer": "Desenvolvedor",
+    "contributor": "Contribuidor",
+    "activist": "Ativista",
+    "supporter": "Apoiador",
+    "undefined": "Não cadastrado"
+  },
+  "token": {
+    "metaTitle": "Token RC",
+    "title": "Crédito de Regeneração (RC)",
+    "intro": "Token ERC-20 do protocolo. A oferta é fixa: todo RC nasce nos pools e só sai como recompensa por trabalho verificado. Quando alguém compensa, os tokens são queimados e viram certificado.",
+    "totalSupply": "Oferta total",
+    "totalSupplyHint": "já descontados os tokens queimados",
+    "locked": "Nos pools",
+    "lockedHint": "ainda não distribuídos",
+    "outsidePools": "Fora dos pools",
+    "outsidePoolsHint": "oferta total menos pools",
+    "certified": "Certificados",
+    "certifiedHint": "queimados em compensações",
+    "holders": "Detentores",
+    "holdersHint": "endereços com saldo",
+    "topHolders": "Maiores detentores",
+    "recentTransfers": "Transferências recentes",
+    "totalTransfers": "{count, plural, one {# no total} other {# no total}}",
+    "in": "entrada",
+    "out": "saída",
+    "burn": "Queimado",
+    "mint": "Emissão"
+  },
+  "protocol": {
+    "title": "Contratos do protocolo",
+    "intro": "Os {count} contratos do Crédito de Regeneração nesta rede. Os contratos são imutáveis e todo o histórico deles pode ser conferido aqui.",
+    "groups": {
+      "token": "Token e impacto",
+      "community": "Comunidade e convites",
+      "inspection": "Inspeções",
+      "roles": "Papéis e pools de recompensa",
+      "validation": "Validação e votos",
+      "other": "Outros"
+    }
+  },
+  "contracts": {
+    "RegenerationCredit": {
+      "description": "Token Crédito de Regeneração (RC), ERC-20 com oferta fixa de 1,31 bilhão. Todo token nasce guardado nos pools e só sai como recompensa por trabalho verificado. A queima gera o certificado de compensação."
+    },
+    "RegenerationCreditImpact": {
+      "description": "Calcula o impacto verificado do sistema (árvores, biodiversidade, carbono e área) e o impacto correspondente a cada token."
+    },
+    "CommunityRules": {
+      "description": "Registro central de usuários: tipo de cada endereço, convites aceitos e denúncias."
+    },
+    "InvitationRules": {
+      "description": "Regras de convite: quem pode convidar quem, intervalo entre convites e limites por tipo de usuário."
+    },
+    "SupporterRules": {
+      "description": "Cadastro aberto de Apoiadores e compensação direcionada: queima RC para um item da calculadora de impacto e paga 5% ao convidante."
+    },
+    "InspectionRules": {
+      "description": "Ciclo das inspeções, do pedido do Regenerador à realização pelo Inspetor e validação."
+    },
+    "RegenerationIndexRules": {
+      "description": "Tabelas do Índice de Regeneração usadas nas inspeções para estimar o impacto do Regenerador (árvores e biodiversidade)."
+    },
+    "RegeneratorRules": {
+      "description": "Regras e dados dos Regeneradores: área em regeneração, coordenadas, inspeções recebidas e pontuação."
+    },
+    "RegeneratorPool": {
+      "description": "Guarda os RC destinados aos Regeneradores e distribui as recompensas de cada Era conforme o nível de cada um."
+    },
+    "InspectorRules": {
+      "description": "Regras e dados dos Inspetores: inspeções realizadas, níveis e elegibilidade para recompensa."
+    },
+    "InspectorPool": {
+      "description": "Guarda os RC destinados aos Inspetores e distribui as recompensas de cada Era conforme o nível de cada um."
+    },
+    "ResearcherRules": {
+      "description": "Regras e dados dos Pesquisadores: publicação de pesquisas, métodos de avaliação e itens da calculadora de impacto."
+    },
+    "ResearcherPool": {
+      "description": "Guarda os RC destinados aos Pesquisadores e distribui as recompensas de cada Era conforme o nível de cada um."
+    },
+    "DeveloperRules": {
+      "description": "Regras e dados dos Desenvolvedores: relatórios de desenvolvimento publicados a cada Era."
+    },
+    "DeveloperPool": {
+      "description": "Guarda os RC destinados aos Desenvolvedores e distribui as recompensas de cada Era conforme o nível de cada um."
+    },
+    "ContributorRules": {
+      "description": "Regras e dados dos Contribuidores: relatórios de contribuição geral (educação, tradução, design, documentação)."
+    },
+    "ContributorPool": {
+      "description": "Guarda os RC destinados aos Contribuidores e distribui as recompensas de cada Era conforme o nível de cada um."
+    },
+    "ActivistRules": {
+      "description": "Regras e dados dos Ativistas: convites de Regeneradores e Inspetores e níveis ganhos quando os convidados completam inspeções."
+    },
+    "ActivistPool": {
+      "description": "Guarda os RC destinados aos Ativistas e distribui as recompensas de cada Era conforme o nível de cada um."
+    },
+    "ValidationRules": {
+      "description": "Análise e votação para invalidar usuários, inspeções e recursos."
+    },
+    "ValidationPool": {
+      "description": "Guarda os RC da validação e recompensa quem participa dos votos de invalidação."
+    },
+    "VoteRules": {
+      "description": "Define quem pode votar nas invalidações (Pesquisadores, Desenvolvedores e Contribuidores elegíveis)."
+    }
+  },
+  "network": {
+    "title": "Rede",
+    "intro": "Status dos nós públicos, dificuldade, hashrate estimado, tempo de bloco e mineradores da rede.",
+    "range": "Período",
+    "ranges": {
+      "1d": "24 horas",
+      "7d": "7 dias",
+      "30d": "30 dias",
+      "90d": "90 dias"
+    },
+    "updating": "Atualizando…",
+    "height": "Altura do bloco",
+    "avgBlockTime": "Tempo médio de bloco",
+    "hashrateAvg": "Hashrate estimado",
+    "difficultyNow": "Dificuldade atual",
+    "blockReward": "Recompensa por bloco",
+    "chainId": "Chain ID",
+    "secondsValue": "{value} s",
+    "hashrate": "Hashrate estimado",
+    "difficulty": "Dificuldade",
+    "blockTime": "Tempo médio de bloco",
+    "viewTable": "Ver tabela",
+    "colDate": "Data",
+    "nodes": "Nós públicos",
+    "nodesHint": "atualiza a cada 30 s",
+    "colNode": "Nó",
+    "colP2p": "P2P",
+    "colRpc": "RPC",
+    "colClient": "Cliente",
+    "colHeight": "Altura",
+    "colPeers": "Peers",
+    "colLatency": "Latência",
+    "reachable": "acessível",
+    "unreachable": "inacessível",
+    "online": "online",
+    "offline": "offline",
+    "rpcClosed": "fechado",
+    "miners24h": "Mineradores nas últimas 24 horas",
+    "minersHint": "estimativa por amostragem (1 a cada {sample} blocos)",
+    "approxBlocks": "~{count} blocos",
+    "forkTitle": "Próxima mudança de protocolo",
+    "forkReward": "Depois do bloco {block}, a recompensa por bloco cai de {before} para {after} {coin}.",
+    "forkGeneric": "Mudança de protocolo programada para o bloco {block}.",
+    "forkEras": "A partir daí, cai mais 20% a cada {era} blocos.",
+    "forkBlock": "Bloco de ativação",
+    "forkRemaining": "Blocos restantes",
+    "forkEta": "Data estimada",
+    "forkEtaHint": "pelo tempo médio de bloco do período"
+  }
+}

@@ -1,4 +1,6 @@
-export interface BlockProps {
+import { TxProps } from "./tx"
+
+export interface BlockProps<T = string | TxProps> {
   difficulty: string
   extraData: string
   gasLimit: string
@@ -17,6 +19,6 @@ export interface BlockProps {
   totalDifficulty: string
   transactionsRoot: string
   size: string
-  transactions: []
-  uncles: []
+  transactions: T[]
+  uncles: string[]
 }
