@@ -146,7 +146,8 @@
   },
   "nav": {
     "token": "Token RC",
-    "protocol": "Protocolo"
+    "protocol": "Protocolo",
+    "network": "Rede"
   },
   "roles": {
     "regenerator": "Regenerador",
@@ -259,5 +260,54 @@
     "VoteRules": {
       "description": "Define quem pode votar nas invalidações (Pesquisadores, Desenvolvedores e Contribuidores elegíveis)."
     }
+  },
+  "network": {
+    "title": "Rede",
+    "intro": "Status dos nós públicos, dificuldade, hashrate estimado, tempo de bloco e mineradores da rede.",
+    "range": "Período",
+    "ranges": {
+      "1d": "24 horas",
+      "7d": "7 dias",
+      "30d": "30 dias",
+      "90d": "90 dias"
+    },
+    "updating": "Atualizando…",
+    "height": "Altura do bloco",
+    "avgBlockTime": "Tempo médio de bloco",
+    "hashrateAvg": "Hashrate estimado",
+    "difficultyNow": "Dificuldade atual",
+    "blockReward": "Recompensa por bloco",
+    "chainId": "Chain ID",
+    "secondsValue": "{value} s",
+    "hashrate": "Hashrate estimado",
+    "difficulty": "Dificuldade",
+    "blockTime": "Tempo médio de bloco",
+    "viewTable": "Ver tabela",
+    "colDate": "Data",
+    "nodes": "Nós públicos",
+    "nodesHint": "atualiza a cada 30 s",
+    "colNode": "Nó",
+    "colP2p": "P2P",
+    "colRpc": "RPC",
+    "colClient": "Cliente",
+    "colHeight": "Altura",
+    "colPeers": "Peers",
+    "colLatency": "Latência",
+    "reachable": "acessível",
+    "unreachable": "inacessível",
+    "online": "online",
+    "offline": "offline",
+    "rpcClosed": "fechado",
+    "miners24h": "Mineradores nas últimas 24 horas",
+    "minersHint": "estimativa por amostragem (1 a cada {sample} blocos)",
+    "approxBlocks": "~{count} blocos",
+    "forkTitle": "Próxima mudança de protocolo",
+    "forkReward": "Depois do bloco {block}, a recompensa por bloco cai de {before} para {after} {coin}.",
+    "forkGeneric": "Mudança de protocolo programada para o bloco {block}.",
+    "forkEras": "A partir daí, cai mais 20% a cada {era} blocos.",
+    "forkBlock": "Bloco de ativação",
+    "forkRemaining": "Blocos restantes",
+    "forkEta": "Data estimada",
+    "forkEtaHint": "pelo tempo médio de bloco do período"
   }
 }

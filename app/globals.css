@@ -18,6 +18,11 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-link: var(--link);
+  --color-chart: var(--chart);
+  --color-chart-grid: var(--chart-grid);
+  --color-chart-axis: var(--chart-axis);
+  --color-tooltip: var(--tooltip);
+  --color-tooltip-border: var(--tooltip-border);
   --color-hero: var(--hero);
   --color-hero-foreground: var(--hero-foreground);
   --color-success: var(--success);
@@ -49,6 +54,12 @@
   --accent: #e7f3d6;
   --accent-foreground: #2c5a10;
   --link: #2d7a1c;
+  --chart: #2d7a1c;
+  --chart-grid: #d6ddd0;
+  --chart-axis: #5d6a57;
+  --chart-area-opacity: 0.1;
+  --tooltip: #ffffff;
+  --tooltip-border: #cfd8c8;
   --hero: #12380d;
   --hero-foreground: #f1f7ea;
   --success: #1f7a2e;
@@ -72,6 +83,12 @@
   --accent: #1e3317;
   --accent-foreground: #b8e07f;
   --link: #9fd35a;
+  --chart: #72a82a;
+  --chart-grid: #3a4e37;
+  --chart-axis: #b0bea9;
+  --chart-area-opacity: 0.16;
+  --tooltip: #22331f;
+  --tooltip-border: #4a6046;
   --hero: #0f2a0b;
   --hero-foreground: #eef6e6;
   --success: #6fcf7c;

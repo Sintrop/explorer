@@ -146,7 +146,8 @@
   },
   "nav": {
     "token": "RC token",
-    "protocol": "Protocol"
+    "protocol": "Protocol",
+    "network": "Network"
   },
   "roles": {
     "regenerator": "Regenerator",
@@ -259,5 +260,54 @@
     "VoteRules": {
       "description": "Defines who can vote on invalidations (eligible Researchers, Developers and Contributors)."
     }
+  },
+  "network": {
+    "title": "Network",
+    "intro": "Status of the public nodes, difficulty, estimated hashrate, block time and miners of the network.",
+    "range": "Range",
+    "ranges": {
+      "1d": "24 hours",
+      "7d": "7 days",
+      "30d": "30 days",
+      "90d": "90 days"
+    },
+    "updating": "Updating…",
+    "height": "Block height",
+    "avgBlockTime": "Average block time",
+    "hashrateAvg": "Estimated hashrate",
+    "difficultyNow": "Current difficulty",
+    "blockReward": "Block reward",
+    "chainId": "Chain ID",
+    "secondsValue": "{value} s",
+    "hashrate": "Estimated hashrate",
+    "difficulty": "Difficulty",
+    "blockTime": "Average block time",
+    "viewTable": "View table",
+    "colDate": "Date",
+    "nodes": "Public nodes",
+    "nodesHint": "refreshes every 30 s",
+    "colNode": "Node",
+    "colP2p": "P2P",
+    "colRpc": "RPC",
+    "colClient": "Client",
+    "colHeight": "Height",
+    "colPeers": "Peers",
+    "colLatency": "Latency",
+    "reachable": "reachable",
+    "unreachable": "unreachable",
+    "online": "online",
+    "offline": "offline",
+    "rpcClosed": "closed",
+    "miners24h": "Miners in the last 24 hours",
+    "minersHint": "sampled estimate (1 in every {sample} blocks)",
+    "approxBlocks": "~{count} blocks",
+    "forkTitle": "Next protocol change",
+    "forkReward": "After block {block}, the block reward drops from {before} to {after} {coin}.",
+    "forkGeneric": "Protocol change scheduled for block {block}.",
+    "forkEras": "From then on, it drops another 20% every {era} blocks.",
+    "forkBlock": "Activation block",
+    "forkRemaining": "Blocks remaining",
+    "forkEta": "Estimated date",
+    "forkEtaHint": "from the range's average block time"
   }
 }
