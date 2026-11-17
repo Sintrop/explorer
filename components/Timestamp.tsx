@@ -11,7 +11,7 @@ export function Timestamp({ seconds }: { seconds: number }): JSX.Element {
   return (
     <span>
       {format.relativeTime(date, now)}
-      <span className="text-gray-500">
+      <span className="text-muted-foreground">
         {" · "}
         {format.dateTime(date, {
           year: "numeric",
@@ -24,5 +24,16 @@ export function Timestamp({ seconds }: { seconds: number }): JSX.Element {
         })}
       </span>
     </span>
+  )
+}
+
+export function Age({ seconds }: { seconds: number }): JSX.Element {
+  const format = useFormatter()
+  const now = useNow({ updateInterval: 1000 })
+  const date = new Date(seconds * 1000)
+  return (
+    <time dateTime={date.toISOString()} title={format.dateTime(date, { dateStyle: "short", timeStyle: "medium" })} className="whitespace-nowrap">
+      {format.relativeTime(date, now)}
+    </time>
   )
 }

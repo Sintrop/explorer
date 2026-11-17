@@ -51,20 +51,20 @@ export function Search({ variant = "hero" }: Props): JSX.Element {
   return (
     <form
       role="search"
-      className={cn("flex w-full flex-col gap-2", hero ? "mx-auto mt-6 mb-14 max-w-3xl" : "max-w-xl")}
+      className={cn("flex w-full flex-col gap-2", hero ? "max-w-3xl" : "max-w-xl")}
       onSubmit={handleSearch}
     >
-      <label htmlFor={`search-${variant}`} className={hero ? "text-sm text-gray-600" : "sr-only"}>
+      <label htmlFor={`search-${variant}`} className="sr-only">
         {t("label")}
       </label>
       <div className="flex w-full gap-2">
         <div className="relative flex-1 min-w-0">
-          <SearchIcon className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-gray-400" aria-hidden />
+          <SearchIcon className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" aria-hidden />
           <input
             id={`search-${variant}`}
             className={cn(
-              "w-full rounded-full border border-gray-300 pl-9 pr-3 focus:border-gray-500 focus:outline-none",
-              hero ? "h-12" : "h-10 text-sm",
+              "w-full rounded-full border bg-card pl-9 pr-3 text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/30",
+              hero ? "h-12 border-transparent shadow-lg" : "h-10 text-sm",
             )}
             placeholder={t("placeholder")}
             value={input}
@@ -83,15 +83,17 @@ export function Search({ variant = "hero" }: Props): JSX.Element {
           type="submit"
           disabled={isSearching}
           className={cn(
-            "shrink-0 rounded-full bg-gray-200 px-5 duration-300 hover:cursor-pointer hover:bg-gray-300 disabled:opacity-60",
-            hero ? "h-12" : "h-10 text-sm",
+            "shrink-0 rounded-full px-5 font-medium duration-200 hover:cursor-pointer disabled:opacity-60",
+            hero
+              ? "h-12 bg-[#8cc63f] text-[#0b120a] shadow-lg hover:bg-[#9fd35a]"
+              : "h-10 bg-primary text-sm text-primary-foreground hover:opacity-90",
           )}
         >
           {isSearching ? t("searching") : t("submit")}
         </button>
       </div>
       {error && (
-        <p id={`search-${variant}-error`} role="alert" className="text-sm text-red-600">
+        <p id={`search-${variant}-error`} role="alert" className={cn("text-sm", hero ? "text-[#ffc2b8]" : "text-danger")}>
           {error}
         </p>
       )}

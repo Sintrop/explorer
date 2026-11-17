@@ -2,8 +2,9 @@ import { JSX } from "react"
 import { notFound } from "next/navigation"
 import { Metadata } from "next"
 import { getTranslations } from "next-intl/server"
-import { Screen } from "@/components/Screen"
+import { PageTitle, Screen } from "@/components/Screen"
 import { TestnetTag } from "@/components/TestnetTag"
+import { HashValue } from "@/components/HashValue"
 import { network } from "@/config/network"
 import { shortenHash } from "@/lib/format"
 import { TransactionDetails } from "./components/TransactionDetails"
@@ -23,14 +24,13 @@ export default async function Tx({ params }: Params): Promise<JSX.Element> {
   if (!isTxHash(tx)) notFound()
 
   const t = await getTranslations("tx")
+  const hash = tx.toLowerCase()
 
   return (
     <Screen>
-      <h1 className="text-2xl font-bold sm:text-3xl">{t("title")}</h1>
-      <p className="mt-2 font-mono text-sm break-all text-gray-600">{tx}</p>
-
+      <PageTitle title={t("title")} subtitle={<HashValue value={hash} />} />
       {network.isTestnet && <TestnetTag txWarning />}
-      <TransactionDetails hash={tx.toLowerCase()} />
+      <TransactionDetails hash={hash} />
     </Screen>
   )
 }

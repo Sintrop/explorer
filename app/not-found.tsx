@@ -9,8 +9,8 @@ export default async function NotFound(): Promise<JSX.Element> {
   return (
     <Screen>
       <h1 className="text-3xl font-bold">{t("title")}</h1>
-      <p className="mt-2 text-gray-600">{t("body")}</p>
-      <Link href="/" className="mt-6 inline-block text-blue-600 hover:underline">
+      <p className="mt-2 text-muted-foreground">{t("body")}</p>
+      <Link href="/" className="mt-6 inline-block text-link hover:underline">
         {t("back")}
       </Link>
     </Screen>

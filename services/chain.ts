@@ -1,4 +1,4 @@
-import { rpc } from "@/lib/rpc"
+import { rpc, rpcBatch } from "@/lib/rpc"
 import { numberToHex } from "@/lib/format"
 import { BlockProps } from "@/types/block"
 import { CallTraceProps, ReceiptTxProps, TxProps } from "@/types/tx"
@@ -31,3 +31,34 @@ export const getTransactionCount = (address: string) => rpc<string>("eth_getTran
 export const getCode = (address: string) => rpc<string>("eth_getCode", [address, "latest"])
 export const traceTransaction = (hash: string) =>
   rpc<CallTraceProps>("debug_traceTransaction", [hash, { tracer: "callTracer" }])
+
+export const getGasPrice = () => rpc<string>("eth_gasPrice")
+export const getTxPoolStatus = () => rpc<{ pending: string; queued: string }>("txpool_status")
+
+const blockCache = new Map<number, BlockProps<TxProps>>()
+const BLOCK_CACHE_LIMIT = 2000
+// the newest blocks can still be replaced by a reorg, so they are always refetched
+const REORG_DEPTH = 3
+
+/** Fetches a contiguous range of full blocks (newest first), reusing blocks already loaded. */
+export async function getBlockRange(from: number, to: number): Promise<BlockProps<TxProps>[]> {
+  const numbers: number[] = []
+  for (let n = to; n >= Math.max(0, from); n--) numbers.push(n)
+
+  const missing = numbers.filter((n) => n > to - REORG_DEPTH || !blockCache.has(n))
+
+  for (let i = 0; i < missing.length; i += 100) {
+    const chunk = missing.slice(i, i + 100)
+    const blocks = await rpcBatch<BlockProps<TxProps> | null>(
+      chunk.map((n) => ({ method: "eth_getBlockByNumber", params: [numberToHex(n), true] })),
+    )
+    blocks.forEach((block, j) => block && blockCache.set(chunk[j], block))
+  }
+
+  if (blockCache.size > BLOCK_CACHE_LIMIT) {
+    const oldest = [...blockCache.keys()].sort((a, b) => a - b).slice(0, blockCache.size - BLOCK_CACHE_LIMIT)
+    oldest.forEach((n) => blockCache.delete(n))
+  }
+
+  return numbers.map((n) => blockCache.get(n)).filter((b): b is BlockProps<TxProps> => !!b)
+}

@@ -5,6 +5,7 @@ import { getTranslations } from "next-intl/server"
 import { getAddress, isAddress } from "ethers"
 import { Screen } from "@/components/Screen"
 import { IconAddress } from "@/components/IconAddress/IconAddress"
+import { CopyButton } from "@/components/CopyButton"
 import { shortenHash } from "@/lib/format"
 import { AddressData } from "./components/AddressData"
 
@@ -26,10 +27,17 @@ export default async function Address({ params }: Params): Promise<JSX.Element> 
 
   return (
     <Screen>
-      <h1 className="text-2xl font-bold">{t("title")}</h1>
-      <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center">
-        <IconAddress address={address} size={56} />
-        <p className="font-mono text-sm break-all sm:text-xl">{address}</p>
+      <div className="mb-6 flex items-center gap-4">
+        <span className="flex shrink-0">
+          <IconAddress address={address} size={52} />
+        </span>
+        <div className="min-w-0">
+          <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">{t("title")}</h1>
+          <p className="mt-1 flex items-start gap-1">
+            <span className="font-mono text-sm break-all text-muted-foreground sm:text-base">{address}</span>
+            <CopyButton value={address} />
+          </p>
+        </div>
       </div>
       <AddressData address={address} />
     </Screen>

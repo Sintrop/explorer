@@ -7,7 +7,12 @@
     "copied": "Copiado",
     "language": "Idioma",
     "testnet": "Testnet",
-    "testnetTx": "Esta é uma transação de testnet"
+    "testnetTx": "Esta é uma transação de testnet",
+    "theme": "Tema",
+    "themeLight": "Claro",
+    "themeDark": "Escuro",
+    "themeSystem": "Automático",
+    "latestBlock": "Último bloco"
   },
   "search": {
     "label": "Buscar transação, endereço ou bloco",
@@ -18,16 +23,30 @@
     "notFound": "Nenhuma transação ou bloco encontrado com esse hash."
   },
   "home": {
-    "latestBlock": "Último bloco",
-    "miner": "Minerador",
-    "txs": "Transações",
-    "txsInBlock": "Transações no bloco #{number}",
-    "noTxs": "Nenhuma transação neste bloco.",
-    "networkData": "Dados da rede",
-    "chainId": "Chain ID",
-    "name": "Nome",
-    "coin": "Moeda",
-    "rpc": "RPC"
+    "heroTitle": "Explorer da blockchain Sintrop",
+    "heroSubtitle": "Consulte blocos, transações e endereços da rede que registra o Crédito de Regeneração.",
+    "blockHeight": "Altura do bloco",
+    "avgBlockTime": "Tempo médio de bloco",
+    "seconds": "{value} s",
+    "hashrate": "Hashrate estimado",
+    "difficulty": "Dificuldade",
+    "gasPrice": "Preço do gas",
+    "pendingTxs": "Transações pendentes",
+    "latestBlocks": "Últimos blocos",
+    "latestTxs": "Últimas transações",
+    "window": "últimos {count} blocos (~{minutes} min)",
+    "noRecentTxs": "Nenhuma transação nos últimos {count} blocos. A rede segue minerando blocos vazios.",
+    "miners": "Mineradores recentes",
+    "minerShare": "{count, plural, one {# bloco} other {# blocos}}",
+    "txsCount": "{count, plural, =0 {sem transações} one {# transação} other {# transações}}",
+    "colBlock": "Bloco",
+    "colAge": "Idade",
+    "colMiner": "Minerador",
+    "colTxs": "Transações",
+    "colHash": "Hash",
+    "colFrom": "De",
+    "colTo": "Para",
+    "colValue": "Valor"
   },
   "block": {
     "metaTitle": "Bloco #{block}",
@@ -38,14 +57,20 @@
     "timestamp": "Data",
     "miner": "Minerador",
     "transactions": "Transações",
-    "parentHash": "Bloco anterior",
+    "parentHash": "Hash do bloco anterior",
     "gasUsed": "Gas usado",
     "gasLimit": "Limite de gas",
     "difficulty": "Dificuldade",
     "totalDifficulty": "Dificuldade total",
     "size": "Tamanho",
     "bytes": "{size} bytes",
-    "extraData": "Dados extras"
+    "extraData": "Dados extras",
+    "prev": "Bloco anterior",
+    "next": "Próximo bloco",
+    "overview": "Visão geral",
+    "txList": "Transações",
+    "noTxs": "Este bloco não tem transações.",
+    "contractCreation": "Criação de contrato"
   },
   "tx": {
     "metaTitle": "Transação {hash}",
@@ -74,7 +99,9 @@
     "panic": "Panic: {message}",
     "customError": "Erro personalizado {selector}",
     "noReason": "O contrato não informou motivo.",
-    "traceUnavailable": "Não foi possível obter o motivo da falha."
+    "traceUnavailable": "Não foi possível obter o motivo da falha.",
+    "overview": "Visão geral",
+    "details": "Detalhes de gas e execução"
   },
   "address": {
     "metaTitle": "Endereço {address}",
@@ -83,11 +110,17 @@
     "account": "Conta",
     "type": "Tipo",
     "balance": "Saldo",
-    "sentTxs": "Transações enviadas"
+    "sentTxs": "Transações enviadas",
+    "overview": "Visão geral"
   },
   "notFound": {
     "title": "Página não encontrada",
     "body": "O endereço, bloco ou transação informado não é válido.",
     "back": "Voltar ao início"
+  },
+  "footer": {
+    "network": "Rede {name} · Chain ID {chainId}",
+    "coin": "Moeda {coin}",
+    "rpc": "RPC"
   }
 }

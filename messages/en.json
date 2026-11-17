@@ -7,7 +7,12 @@
     "copied": "Copied",
     "language": "Language",
     "testnet": "Testnet",
-    "testnetTx": "This is a testnet transaction"
+    "testnetTx": "This is a testnet transaction",
+    "theme": "Theme",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "themeSystem": "System",
+    "latestBlock": "Latest block"
   },
   "search": {
     "label": "Search for a transaction, address or block",
@@ -18,16 +23,30 @@
     "notFound": "No transaction or block found with this hash."
   },
   "home": {
-    "latestBlock": "Latest block",
-    "miner": "Miner",
-    "txs": "Transactions",
-    "txsInBlock": "Transactions in block #{number}",
-    "noTxs": "No transactions in this block.",
-    "networkData": "Network data",
-    "chainId": "Chain ID",
-    "name": "Name",
-    "coin": "Coin",
-    "rpc": "RPC"
+    "heroTitle": "Sintrop blockchain explorer",
+    "heroSubtitle": "Browse blocks, transactions and addresses of the network that records the Regeneration Credit.",
+    "blockHeight": "Block height",
+    "avgBlockTime": "Average block time",
+    "seconds": "{value} s",
+    "hashrate": "Estimated hashrate",
+    "difficulty": "Difficulty",
+    "gasPrice": "Gas price",
+    "pendingTxs": "Pending transactions",
+    "latestBlocks": "Latest blocks",
+    "latestTxs": "Latest transactions",
+    "window": "last {count} blocks (~{minutes} min)",
+    "noRecentTxs": "No transactions in the last {count} blocks. The network keeps mining empty blocks.",
+    "miners": "Recent miners",
+    "minerShare": "{count, plural, one {# block} other {# blocks}}",
+    "txsCount": "{count, plural, =0 {no transactions} one {# transaction} other {# transactions}}",
+    "colBlock": "Block",
+    "colAge": "Age",
+    "colMiner": "Miner",
+    "colTxs": "Transactions",
+    "colHash": "Hash",
+    "colFrom": "From",
+    "colTo": "To",
+    "colValue": "Value"
   },
   "block": {
     "metaTitle": "Block #{block}",
@@ -38,14 +57,20 @@
     "timestamp": "Timestamp",
     "miner": "Miner",
     "transactions": "Transactions",
-    "parentHash": "Parent block",
+    "parentHash": "Parent hash",
     "gasUsed": "Gas used",
     "gasLimit": "Gas limit",
     "difficulty": "Difficulty",
     "totalDifficulty": "Total difficulty",
     "size": "Size",
     "bytes": "{size} bytes",
-    "extraData": "Extra data"
+    "extraData": "Extra data",
+    "prev": "Previous block",
+    "next": "Next block",
+    "overview": "Overview",
+    "txList": "Transactions",
+    "noTxs": "This block has no transactions.",
+    "contractCreation": "Contract creation"
   },
   "tx": {
     "metaTitle": "Transaction {hash}",
@@ -74,7 +99,9 @@
     "panic": "Panic: {message}",
     "customError": "Custom error {selector}",
     "noReason": "The contract did not provide a reason.",
-    "traceUnavailable": "Could not fetch the revert reason."
+    "traceUnavailable": "Could not fetch the revert reason.",
+    "overview": "Overview",
+    "details": "Gas and execution details"
   },
   "address": {
     "metaTitle": "Address {address}",
@@ -83,11 +110,17 @@
     "account": "Account",
     "type": "Type",
     "balance": "Balance",
-    "sentTxs": "Sent transactions"
+    "sentTxs": "Sent transactions",
+    "overview": "Overview"
   },
   "notFound": {
     "title": "Page not found",
     "body": "The address, block or transaction is not valid.",
     "back": "Back to home"
+  },
+  "footer": {
+    "network": "{name} network · Chain ID {chainId}",
+    "coin": "{coin} coin",
+    "rpc": "RPC"
   }
 }

@@ -15,26 +15,26 @@ export function RevertReason({ hash }: { hash: string }): JSX.Element {
     retry: false,
   })
 
-  if (isLoading) return <span className="text-gray-500">…</span>
-  if (isError || !data) return <span className="text-gray-500">{t("traceUnavailable")}</span>
+  if (isLoading) return <span className="text-muted-foreground">…</span>
+  if (isError || !data) return <span className="text-muted-foreground">{t("traceUnavailable")}</span>
 
-  if (data.revertReason) return <span className="text-red-600">{data.revertReason}</span>
+  if (data.revertReason) return <span className="text-danger">{data.revertReason}</span>
 
   const decoded = decodeRevert(data.output)
 
   switch (decoded.kind) {
     case "error":
-      return <span className="text-red-600">{decoded.message}</span>
+      return <span className="text-danger">{decoded.message}</span>
     case "panic":
-      return <span className="text-red-600">{t("panic", { message: decoded.message })}</span>
+      return <span className="text-danger">{t("panic", { message: decoded.message })}</span>
     case "custom":
       return (
         <span className="flex flex-col gap-1">
-          <span className="text-red-600">{t("customError", { selector: decoded.selector })}</span>
-          <span className="font-mono text-xs text-gray-500">{decoded.data}</span>
+          <span className="text-danger">{t("customError", { selector: decoded.selector })}</span>
+          <span className="font-mono text-xs text-muted-foreground">{decoded.data}</span>
         </span>
       )
     default:
-      return <span className="text-gray-500">{data.error ? `${data.error}. ` : ""}{t("noReason")}</span>
+      return <span className="text-muted-foreground">{data.error ? `${data.error}. ` : ""}{t("noReason")}</span>
   }
 }

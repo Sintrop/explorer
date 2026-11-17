@@ -8,6 +8,7 @@ import { hexToBigInt } from "@/lib/format"
 import { DataItem, DataList } from "@/components/DataItem"
 import { Amount } from "@/components/Amount"
 import { Loading, RpcErrorMessage } from "@/components/QueryState"
+import { Card, CardBody, CardHeader } from "@/components/ui/Card"
 
 export function AddressData({ address }: { address: string }): JSX.Element {
   const t = useTranslations("address")
@@ -21,28 +22,43 @@ export function AddressData({ address }: { address: string }): JSX.Element {
     ],
   })
 
-  if (balance.isLoading || txCount.isLoading || code.isLoading) return <Loading />
+  if (balance.isLoading || txCount.isLoading || code.isLoading) {
+    return (
+      <Card>
+        <Loading rows={3} />
+      </Card>
+    )
+  }
   if (balance.isError || txCount.isError || code.isError) {
     return (
-      <RpcErrorMessage
-        onRetry={() => {
-          balance.refetch()
-          txCount.refetch()
-          code.refetch()
-        }}
-      />
+      <Card>
+        <RpcErrorMessage
+          onRetry={() => {
+            balance.refetch()
+            txCount.refetch()
+            code.refetch()
+          }}
+        />
+      </Card>
     )
   }
 
   const isContract = !!code.data && code.data !== "0x"
 
   return (
-    <DataList>
-      <DataItem label={t("type")}>{isContract ? t("contract") : t("account")}</DataItem>
-      <DataItem label={t("balance")}>
-        <Amount value={hexToBigInt(balance.data)} maxFractionDigits={18} />
-      </DataItem>
-      <DataItem label={t("sentTxs")}>{format.number(hexToBigInt(txCount.data))}</DataItem>
-    </DataList>
+    <Card>
+      <CardHeader title={t("overview")} />
+      <CardBody>
+        <DataList>
+          <DataItem label={t("type")}>
+            <span className="rounded-full bg-muted px-2.5 py-0.5 text-sm">{isContract ? t("contract") : t("account")}</span>
+          </DataItem>
+          <DataItem label={t("balance")}>
+            <Amount value={hexToBigInt(balance.data)} maxFractionDigits={18} />
+          </DataItem>
+          <DataItem label={t("sentTxs")}>{format.number(hexToBigInt(txCount.data))}</DataItem>
+        </DataList>
+      </CardBody>
+    </Card>
   )
 }

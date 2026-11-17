@@ -1,19 +1,14 @@
 import { JSX, ReactNode } from "react"
 
-interface Props {
-  label: string
-  children: ReactNode
-}
-
-export function DataItem({ label, children }: Props): JSX.Element {
+export function DataItem({ label, children }: { label: string; children: ReactNode }): JSX.Element {
   return (
-    <div className="flex flex-col gap-1 py-2 sm:flex-row sm:gap-4">
-      <dt className="shrink-0 text-gray-500 sm:w-48">{label}</dt>
-      <dd className="min-w-0 break-all">{children}</dd>
+    <div className="flex flex-col gap-1 py-3 sm:flex-row sm:items-start sm:gap-4">
+      <dt className="shrink-0 text-sm text-muted-foreground sm:w-52 sm:pt-0.5">{label}</dt>
+      <dd className="min-w-0 break-words">{children}</dd>
     </div>
   )
 }
 
 export function DataList({ children }: { children: ReactNode }): JSX.Element {
-  return <dl className="mt-6 flex flex-col divide-y">{children}</dl>
+  return <dl className="flex flex-col divide-y">{children}</dl>
 }
